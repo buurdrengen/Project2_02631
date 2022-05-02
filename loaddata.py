@@ -33,9 +33,8 @@ def dataLoad(filename,Nx,Ny,Nz):
         # The three-dimensional array is transposed, since the desired output as mentioned above is an Nz, Ny, Nx array. 
         # If the desired output of the three-dimensional array is Nx, Ny, Nz - the transposed sign should be removed.
         # Here it is chosen to output as Nz, Ny, Nx since it is this way the statistics will later read the data. 
-        print(data)
     else: 
         print('Error: The specified dimensions do not fit with the data.')
 
     return data 
-print(dataLoad('turbine_32x32x8192.bin',32,32,8192))
+#print(dataLoad('turbine_32x32x8192.bin',32,32,8192))
