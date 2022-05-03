@@ -16,6 +16,7 @@ from displayMenu import displayMenu
 from inputFilename import inputFilename
 
 
+
 # Define menu items
 menuItems = np.array(["Load data", "Display statistics", "Generate plots", "Quit"])
 
@@ -57,16 +58,16 @@ while True:
         # test = dataStatistics(data, statistics_menuItems[choice_statistics-1])
         # print(test)
             if choice_statistics == 1:
-                dataStatistics(data,"Mean")
-                print('Mean temperature = {:.2f} °C'.format(dataStatistics(data, 'mean temperature')),"\n")
+                dataStatistics(data,"Mean",Yref,Zref,DeltaX)
+                print('Mean = {:.2f} °C'.format(dataStatistics(data, 'Mean',Yref,Zref,DeltaX)),"\n")
                 continue
             elif choice_statistics == 2:
-                dataStatistics(data, "Variance")
-                print('Mean growth rate = {:.2f}'.format(dataStatistics(data, 'mean growth rate')),"\n")
+                dataStatistics(data, "Variance",Yref,Zref,DeltaX)
+                print('Variance = {:.2f}'.format(dataStatistics(data, 'Variance',Yref,Zref,DeltaX)),"\n")
                 continue
             elif choice_statistics ==3:
-                dataStatistics(data, "Cross correlation")
-                print('Standard temperature = {:.2f}'.format(dataStatistics(data, 'std temperature')),"\n")
+                dataStatistics(data, "Cross correlation",Yref,Zref,DeltaX)
+                print('Cross correlation of Yref ='Yref' and Zref ='Zref' = {:.2f}'.format(dataStatistics(data, 'Cross correlation',Yref,Zref,DeltaX)),"\n")
                 continue
                            
     # ------------------------------------------------------------------
