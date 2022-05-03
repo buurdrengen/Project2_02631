@@ -5,32 +5,21 @@ Spyder Editor
 This is a temporary script file.
 """
 
-
-#Input for function:
-# data: An Nz x Ny x Nx array containing wind speed values.
-#statistic: A string specifying the statistic that should be calculated (Mean, Variance, or Cross correlation.)
-#Yref, Zref: The reference y- and z-coordinate for the cross-correlation. Only needed when statistic is Cross correlation. Denoted yref and zref below.
-#DeltaX: Separation in x-coordinate for which the cross-correlation has to be evaluated. Only needed when statistic is Cross correlation. Denoted deltax below.
-
-# result: A two-dimensional array with size (Ny x Nz) containing the calculated statistic for each point in the y-z plane.
-
-
-
 import numpy as np
 from loaddata import dataLoad
-#from test_script import Nx
-
-#test_array = np.array([[[1, 2, 3, 5], [3, 4, 10, 5]], [[5, 6, 89, 5], [7, 8, 1, 5]],[[4, 3, 2, 1], [10, 9, 8, 7]]])
-#print(test_array)
-
-# Yref, Zref and DeltaX are set to None, as they are not required for mean and variance calculation
-# data = dataLoad('turbine_32x32x8192.bin',Nx = 32,Ny = 32,Nz = 8192)
-# Yref = 1
-# Zref = 1
-# DeltaX = 1
-# Nx = 32
 
 def dataStatistics(data,statistic,Yref=None,Zref=None,DeltaX=None):
+    # Input for function:
+    # data: An Nz x Ny x Nx array containing wind speed values.
+    # statistic: A string specifying the statistic that should be calculated (Mean, Variance, or Cross correlation.)
+    # Yref, Zref: The reference y- and z-coordinate for the cross-correlation. 
+    # Only needed when statistic is Cross correlation. Denoted yref and zref below.
+    # DeltaX: Separation in x-coordinate for which the cross-correlation has to be evaluated. 
+    # Only needed when statistic is Cross correlation. Denoted deltax below.
+
+    # result: A two-dimensional array with size (Ny x Nz) containing the calculated statistic for each point in the y-z plane.
+
+
     if statistic == "Mean":
         # calculates the mean of the entire dataset, going through the x-dimension and return a 2D array in z/y dimension
         array_mean = np.mean(data, axis = 2)
@@ -60,7 +49,5 @@ def dataStatistics(data,statistic,Yref=None,Zref=None,DeltaX=None):
         result = "please enter a valid input for statistics"
         
     return result
-
-TESTER = dataLoad('turbine_32x32x8192.bin',32,32,8192)
-print(dataStatistics(TESTER, "Cross correlation", 1, 1, 1))
-
+# testdata=dataLoad('turbine_32x32x8192.bin',32,32,8192)
+# print(dataStatistics(testdata,"Cross correlation",1,1,1))
