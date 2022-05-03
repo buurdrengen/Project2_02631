@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Spyder Editor
-
+# Authour: C. Glitz
 This is a temporary script file.
 """
 
