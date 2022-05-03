@@ -10,8 +10,9 @@ import numpy as np
 from loaddata import dataLoad
 
 from input_number import inputNumber
+from input_number_integers import inputNumber_int
 from displayMenu import displayMenu
-#from statistics_2 import dataStatistics
+from statistics import dataStatistics
 #from dataPlot import dataPlot
 from inputFilename import inputFilename
 
@@ -53,21 +54,54 @@ while True:
             choice_statistics = displayMenu(statistics_menuItems)
             if choice_statistics == 4:
                 break
+            Yref = None 
+            Zref = None
+            DeltaX = None 
         #compute statistics via dataStatistics function 
+<<<<<<< Updated upstream
         # test = dataStatistics(data, statistics_menuItems[choice_statistics-1])
         # print(test)
         # Remember to display y- and z-coordinates!! 
             if choice_statistics == 1:
                 dataStatistics(data,"Mean")
                 print('Mean temperature = {:.2f} °C'.format(dataStatistics(data, 'mean temperature')),"\n")
+=======
+            # returns mean of user determined y and z coordinate. Input number has to be integer, otherwise error message is displayed 
+            if choice_statistics == 1:
+                # mean_array = 2D array (z to y dimension) with all the means through x-dimension
+                mean_array = dataStatistics(data,"Mean",Yref,Zref,DeltaX)
+                z_coordinate = inputNumber_int('Please input the z_coordinate you want to display the mean for: ')
+                y_coordinate = inputNumber_int('Please input the y_coordinate you want to display the mean for: ')
+                # mean of input coordinates 
+                mean = mean_array[z_coordinate, y_coordinate]
+                print('Mean = {:.2f}'.format(mean,"\n"))
+>>>>>>> Stashed changes
                 continue
+            # returns variance of user determined y and z coordinate. Input number has to be integer, otherwise error message is displayed 
             elif choice_statistics == 2:
+<<<<<<< Updated upstream
                 dataStatistics(data, "Variance")
                 print('Mean growth rate = {:.2f}'.format(dataStatistics(data, 'mean growth rate')),"\n")
                 continue
             elif choice_statistics ==3:
                 dataStatistics(data, "Cross correlation")
                 print('Standard temperature = {:.2f}'.format(dataStatistics(data, 'std temperature')),"\n")
+=======
+                # 2D array (z to y dimension) with all variances through x-dimesnion
+                variance_array = dataStatistics(data, "Variance",Yref,Zref,DeltaX)
+                z_coordinate = inputNumber_int('Please input the z_coordinate you want to display the variance for: ')
+                y_coordinate = inputNumber_int('Please input the y_coordinate you want to display the variance for: ')
+                # variance for input coordinates 
+                variance = variance_array[z_coordinate, y_coordinate]
+                print('Variance = {:.2f}'.format(variance,"\n"))
+                continue
+            elif choice_statistics == 3:
+                Yref = inputNumber_int('Please input the y_coordinate for the cross correlation: ')
+                Zref = inputNumber_int('Please input the z_coordinate for the cross correlation: ')
+                DeltaX = inputNumber_int('Please input the separation in x-coordinate for which the cross-correlation shall be evaluated for: ')
+                cross_correlation = dataStatistics(data, "Cross correlation", Yref, Zref, DeltaX)
+                print('Cross correlation = {:.2f}'.format(cross_correlation,"\n"))
+>>>>>>> Stashed changes
                 continue
                            
     # ------------------------------------------------------------------
