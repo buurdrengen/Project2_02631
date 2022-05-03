@@ -18,15 +18,17 @@ import numpy as np
 from loaddata import dataLoad
 data = dataLoad('turbine_32x32x8192.bin',32,32,8192)
 
-if statistic == "Mean":
+def dataStatistics(data,statistic,Yref,Zref,DeltaX):
+
+    if statistic == "Mean":
     result = 
     
-elif statistic == "Variance":
+    elif statistic == "Variance":
     
-elif statistic == "Cross correlation":
+    elif statistic == "Cross correlation":
     
-else:
-    result = "please enter a valid input for statistics"
+    else:
+        result = "please enter a valid input for statistics"
 
 
 

@@ -9,7 +9,8 @@ def dataLoad(filename,Nx,Ny,Nz):
     # Binary file (.bin), and Nx, Ny and Nz, which are the sizes of the first, second and third dimension.
     # Here the values for Nx, Ny and Nz are specified in the filename as "32x32x8192", for Nx, Ny, Nz respectively. 
     
-    # Output: data, a 3-dimensional array with size Nz x Ny x Nx
+    # Output: data, a 3-dimensional array with size Nz x Ny x Nx. This means the 0-axis is Nz, the 1-axis is Ny
+    # and the 2-axis is Nx. Think of it as: https://se.mathworks.com/help/matlab/math/multidimensional-arrays.html
 
     # About the file: The .bin file represents a sequence of numbers which corresponds to indexes z,y,x. 
     # These indexes increases from 1 to Nz with y = 1 and x = 1. After the z index has gone from 1 to Nz, y gets +1. 
