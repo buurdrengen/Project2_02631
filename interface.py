@@ -43,7 +43,7 @@ while True:
         try:
             data
         except:
-            print('You need to load a dataset first')
+            print('You need to load a dataset first, please try again.')
             continue
         # display statistics options and shows applied filter (if a filter is active) 
         statistics_menuItems = np.array(["Mean", "Variance","Cross correlation", "Quit"])
@@ -57,6 +57,7 @@ while True:
             Zref = None
             DeltaX = None
         #compute statistics via dataStatistics function 
+<<<<<<< Updated upstream
         # Remember to display y- and z-coordinates!! 
             # returns mean of user determined y and z coordinate. Input number has to be integer, otherwise error message is displayed 
             if choice_statistics == 1:
@@ -91,6 +92,23 @@ while True:
                 cross_correlation = dataStatistics(data, "Cross correlation", Yref, Zref, DeltaX)
                 print(cross_correlation)
                 print('')
+=======
+        # test = dataStatistics(data, statistics_menuItems[choice_statistics-1])
+        # print(test)
+        # Remember to display y- and z-coordinates!! 
+            if choice_statistics == 1:
+                dataStatistics(data,"Mean")
+                print('Mean temperature = {:.2f} °C'.format(dataStatistics(data, 'mean temperature')),"\n")
+                continue
+            # returns variance of user determined y and z coordinate. Input number has to be integer, otherwise error message is displayed 
+            elif choice_statistics == 2:
+                dataStatistics(data, "Variance")
+                print('Mean growth rate = {:.2f}'.format(dataStatistics(data, 'mean growth rate')),"\n")
+                continue
+            elif choice_statistics ==3:
+                dataStatistics(data, "Cross correlation")
+                print('Standard temperature = {:.2f}'.format(dataStatistics(data, 'std temperature')),"\n")
+>>>>>>> Stashed changes
                 continue
                            
     # ------------------------------------------------------------------

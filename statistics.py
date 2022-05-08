@@ -38,15 +38,15 @@ def dataStatistics(data,statistic,Yref=None,Zref=None,DeltaX=None):
         Nx = np.size(data,axis=2) 
         
         # Constructing the array inside the sum and making it from 0 to Nx instead from 1 to use np.sum
-        # without initial-values (our experience is it messes things up). 
+        # DeltaX is substracted aswell, to make the sum from 0 to Nx instead:  
         c_init = data[:,:,0:Nx-DeltaX-1] * data[Zref,Yref,DeltaX:(Nx-1)]
 
         # Taking the sum from 0 to Nx on the x-axis: 
         array_crosscorrelation = (np.sum(c_init,axis=2)*(1/(Nx-DeltaX)))
         result = array_crosscorrelation
     
-    else:
-        result = "please enter a valid input for statistics"
+    # else:
+    #     result = "please enter a valid input for statistics"
         
     return result
 
