@@ -11,8 +11,8 @@ from loaddata import dataLoad
 from input_number import inputNumber
 from input_number_integers import inputNumber_int
 from displayMenu import displayMenu
-from statistics_2 import dataStatistics
-#from dataPlot import dataPlot
+from statistics import dataStatistics
+from dataPlot import dataPlot
 from inputFilename import inputFilename
 
 
@@ -57,26 +57,43 @@ while True:
             Zref = None
             DeltaX = None
         #compute statistics via dataStatistics function 
-<<<<<<< Updated upstream
         # Remember to display y- and z-coordinates!! 
             # returns mean of user determined y and z coordinate. Input number has to be integer, otherwise error message is displayed 
             if choice_statistics == 1:
                 # mean_array = 2D array (z to y dimension) with all the means through x-dimension
                 mean_array = dataStatistics(data,"Mean",Yref,Zref,DeltaX)
-                # => because -1 of index compared to dimension given as input before 
-                while z_coordinate => dimension_z:
-                    z_coordinate = inputNumber_int('Please input the z_coordinate you want to display the mean for: ')
-                while y_coordinate => dimension_y:
+               
+                # asks user for z and y coordinate they want to calculate the mean for. Displays error and asks again for valid coordinate if input number higher than input array 
+                # more elegant would be: write function which asks for z and y coordinate and is called for all 3 statistics
+                # if proven to work, can be copied to Variance and Correlation option 
+                while(True):
+                    z_coordinate = inputNumber_int('Please input the z_coordinate you want to display the mean for: ') 
+                    # exits while loop and continues if input coordinate is valid because it is lower than the z dimension of the input data
+                    if z_coordinate <= dimension_z:
+                        break
+                    #if user input is bigger than original data, error message is displayed and the user is asked again to input a valid z-coordinate
+                    else: 
+                        print("The value for the z-coordinate must be lower than the size of the array's third dimension")
+               # same as for z for the y-coordinate. 
+                while True:
                     y_coordinate = inputNumber_int('Please input the y_coordinate you want to display the mean for: ')
+                    if y_coordinate <= dimension_y:
+                        break
+                    else: 
+                        print("the value for the y-coordinate must be lower than the size of the array's second's dimension")
                 # mean of input coordinates 
-                mean = mean_array[z_coordinate, y_coordinate]
+                # -1 because index starts with 0 whereas input coordinate is always one more. e.g. Input : 10 is index 9. 
+                mean = mean_array[z_coordinate-1, y_coordinate-1]
                 print('Mean = {:.2f}'.format(mean,"\n"))
                 print('')
                 continue
+               
             # returns variance of user determined y and z coordinate. Input number has to be integer, otherwise error message is displayed 
             elif choice_statistics == 2: 
                 # 2D array (z to y dimension) with all variances through x-dimesnion
                 variance_array = dataStatistics(data, "Variance",Yref,Zref,DeltaX)
+                # copy lines from mean calculation to ask for y and z coordinates 
+                
                 z_coordinate = inputNumber_int('Please input the z_coordinate you want to display the variance for: ')
                 y_coordinate = inputNumber_int('Please input the y_coordinate you want to display the variance for: ')
                 # variance for input coordinates 
@@ -86,29 +103,13 @@ while True:
                 continue
             
             elif choice_statistics == 3:
+                #copy lines from above but here with Yref and Zref. What is limit for DeltaX? Also maximal size of x-coordinate? 
                 Yref = inputNumber_int('Please input the y_coordinate (Yref) for the cross correlation: ')
                 Zref = inputNumber_int('Please input the z_coordinate (Zref) for the cross correlation: ')
                 DeltaX = inputNumber_int('Please input the separation in x-coordinate for which the cross-correlation shall be evaluated for: ')
                 cross_correlation = dataStatistics(data, "Cross correlation", Yref, Zref, DeltaX)
                 print(cross_correlation)
                 print('')
-=======
-        # test = dataStatistics(data, statistics_menuItems[choice_statistics-1])
-        # print(test)
-        # Remember to display y- and z-coordinates!! 
-            if choice_statistics == 1:
-                dataStatistics(data,"Mean")
-                print('Mean temperature = {:.2f} °C'.format(dataStatistics(data, 'mean temperature')),"\n")
-                continue
-            # returns variance of user determined y and z coordinate. Input number has to be integer, otherwise error message is displayed 
-            elif choice_statistics == 2:
-                dataStatistics(data, "Variance")
-                print('Mean growth rate = {:.2f}'.format(dataStatistics(data, 'mean growth rate')),"\n")
-                continue
-            elif choice_statistics ==3:
-                dataStatistics(data, "Cross correlation")
-                print('Standard temperature = {:.2f}'.format(dataStatistics(data, 'std temperature')),"\n")
->>>>>>> Stashed changes
                 continue
                            
     # ------------------------------------------------------------------
