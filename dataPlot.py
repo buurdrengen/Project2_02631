@@ -11,10 +11,10 @@ import matplotlib.pyplot as plt
 from statistics import *
 from loaddata import dataLoad
 from statistics import dataStatistics
-testdata = dataLoad('turbine_32x32x8192.bin',32,32,8192)
-datamean = dataStatistics(testdata,'Mean')
-datavar = dataStatistics(testdata,'Variance')
-datacross = dataStatistics(testdata,'Cross correlation',1,1,1)
+# testdata = dataLoad('turbine_32x32x8192.bin',32,32,8192)
+# datamean = dataStatistics(testdata,'Mean')
+# datavar = dataStatistics(testdata,'Variance')
+# datacross = dataStatistics(testdata,'Cross correlation',1,1,1)
 def dataPlot(data,statistic):
     # Input: Loaded data and chosen statistic as a string: 
     # "Mean", "Variance" or "Cross-correlation". 
@@ -32,7 +32,7 @@ def dataPlot(data,statistic):
     plt.ylabel('z-axis')
 
     # Create the contourplot
-    plt.contour(z,y,data,cmap=cm.coolwarm,linewidth=0)
+    plt.contour(z,y,data,cmap=cm.jet,linewidth=0)
 
     
     # Create titles that changes from the input: 
@@ -45,9 +45,9 @@ def dataPlot(data,statistic):
     elif statistic == "Cross correlation":
         plt.title("Cross correlation (yz-plane)",fontsize=14,fontweight='bold') 
     
-    cmap = plt.get_cmap('coolwarm')
+    cmap = plt.get_cmap('jet')
     sm = plt.cm.ScalarMappable(cmap=cmap)
     plt.colorbar(sm)
     plt.show()
 
-print(dataPlot(datacross,'Cross correlation'))
+#print(dataPlot(datacross,'Cross correlation'))

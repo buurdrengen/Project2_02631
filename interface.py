@@ -11,7 +11,7 @@ from loaddata import dataLoad
 from input_number import inputNumber
 from input_number_integers import inputNumber_int
 from displayMenu import displayMenu
-from statistics import dataStatistics
+from statistics_2 import dataStatistics
 from dataPlot import dataPlot
 from inputFilename import inputFilename
 
@@ -45,7 +45,8 @@ while True:
         except:
             print('You need to load a dataset first, please try again.')
             continue
-        # display statistics options and shows applied filter (if a filter is active) 
+
+        # Display statistics options
         statistics_menuItems = np.array(["Mean", "Variance","Cross correlation", "Quit"])
 
         # Display menu options for statistics and ask user to choose a menu item
@@ -80,7 +81,7 @@ while True:
                     if y_coordinate <= dimension_y:
                         break
                     else: 
-                        print("the value for the y-coordinate must be lower than the size of the array's second's dimension")
+                        print("The value for the y-coordinate must be lower than the size of the array's second's dimension")
                 # mean of input coordinates 
                 # -1 because index starts with 0 whereas input coordinate is always one more. e.g. Input : 10 is index 9. 
                 mean = mean_array[z_coordinate-1, y_coordinate-1]
@@ -104,9 +105,9 @@ while True:
             
             elif choice_statistics == 3:
                 #copy lines from above but here with Yref and Zref. What is limit for DeltaX? Also maximal size of x-coordinate? 
-                Yref = inputNumber_int('Please input the y_coordinate (Yref) for the cross correlation: ')
-                Zref = inputNumber_int('Please input the z_coordinate (Zref) for the cross correlation: ')
-                DeltaX = inputNumber_int('Please input the separation in x-coordinate for which the cross-correlation shall be evaluated for: ')
+                Yref = inputNumber_int('Please input the reference y_coordinate (Yref) for the cross correlation: ')
+                Zref = inputNumber_int('Please input the reference z_coordinate (Zref) for the cross correlation: ')
+                DeltaX = inputNumber_int('Please input the separation in x-coordinate (lags) for which the cross-correlation shall be evaluated for: ')
                 cross_correlation = dataStatistics(data, "Cross correlation", Yref, Zref, DeltaX)
                 print(cross_correlation)
                 print('')
@@ -119,10 +120,34 @@ while True:
         try:
             data 
         except: 
-            print("You need to load a dataset first")
+            print("You need to load a dataset first, please go back and try again.")
             continue
-        # Plot the data 
-        dataPlot(data)
+
+        # Menu for choosing which statistic to plot.
+        plot_menuitems = np.array(["Mean", "Variance","Cross correlation","Quit"])
+
+        choice_plot = displayMenu(plot_menuitems)
+
+        # Plotting the different choices: 
+        if choice_plot == 1: 
+            data_mean = dataStatistics(data,"Mean")
+            dataPlot(data_mean,"Mean")
+        
+        elif choice_plot == 2:
+            data_variance = dataStatistics(data,"Variance")
+            dataPlot(data_variance,"Variance")
+        
+        elif choice_plot == 3: 
+            Yref = int(inputNumber_int('Please input the reference y_coordinate (Yref) for the cross correlation:'))
+            Zref = int(inputNumber_int('Please input the reference z_coordinate (Zref) for the cross correlation:'))
+            DeltaX = int(inputNumber_int('Please input the separation in x-coordinate (lags) for which the cross-correlation shall be evaluated for:'))
+            data_crosscorrelation = dataStatistics(data,"Cross correlation",Yref,Zref,DeltaX)
+            dataPlot(data_crosscorrelation,"Cross correlation")
+        
+        elif choice_plot == 4: 
+            break
+
+
     # 5. Quit
     elif choice == 4:
         break

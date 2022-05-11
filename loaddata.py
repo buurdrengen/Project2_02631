@@ -35,7 +35,8 @@ def dataLoad(filename,Nx,Ny,Nz):
         # If the desired output of the three-dimensional array is Nx, Ny, Nz - the transposed sign should be removed.
         # Here it is chosen to output as Nz, Ny, Nx since it is this way the statistics will later read the data. 
     else: 
-        print('Error: The specified dimensions do not fit with the data.')
+        print('Error: The specified dimensions do not fit with the data. Try again, look at the filename; .bin files often has the dimensions written as "Nx x Ny x Nz".')
+        return 
 
     return data 
 #print(dataLoad('turbine_32x32x8192.bin',32,32,8192))
