@@ -16,7 +16,7 @@ def inputFilename():
         if filename in files:
             break
         else:
-            print('The file could not be found in the current working directory!')
+            print('The file could not be found in the current working directory, please try again.')
     return filename
 
 #print(inputFilename())

@@ -6,7 +6,7 @@
 def dataLoad(filename,Nx,Ny,Nz):
     import numpy as np
     # This function takes as input: 
-    # Binary file (.bin), and Nx, Ny and Nz, which are the sizes of the first, second and third dimension.
+    # Binary file (.bin), and Nx, Ny and Nz (integers), which are the sizes of the first, second and third dimension.
     # Here the values for Nx, Ny and Nz are specified in the filename as "32x32x8192", for Nx, Ny, Nz respectively. 
     
     # Output: data, a 3-dimensional array with size Nz x Ny x Nx. This means the 0-axis is Nz, the 1-axis is Ny

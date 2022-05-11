@@ -4,9 +4,8 @@ Created on Thu Mar 31 09:18:44 2022
 
 @author: cglitz
 """
-
+# Import
 import numpy as np
-# imports three-dimensional array with Nx, Ny, Nz
 from loaddata import dataLoad
 from input_number import inputNumber
 from input_number_integers import inputNumber_int
@@ -19,7 +18,7 @@ from inputFilename import inputFilename
 # Define menu items
 menuItems = np.array(["Load data", "Display statistics", "Generate plots", "Quit"])
 
-# Start
+# Start 
 while True:
     # Display menu options and ask user to choose a menu item
     choice = displayMenu(menuItems)
@@ -47,7 +46,7 @@ while True:
             continue
 
         # Display statistics options
-        statistics_menuItems = np.array(["Mean", "Variance","Cross correlation", "Quit"])
+        statistics_menuItems = np.array(["Mean", "Variance","Cross correlation", "Quit statistics"])
 
         # Display menu options for statistics and ask user to choose a menu item
         while True:
@@ -57,9 +56,11 @@ while True:
             Yref = None
             Zref = None
             DeltaX = None
-        #compute statistics via dataStatistics function 
+        # Compute statistics via dataStatistics function 
         # Remember to display y- and z-coordinates!! 
-            # returns mean of user determined y and z coordinate. Input number has to be integer, otherwise error message is displayed 
+            # Returns mean of the data, but only showing the chosen y- and z-coordinates by the user. 
+            # Input number has to be integer, otherwise error message is displayed. 
+
             if choice_statistics == 1:
                 # mean_array = 2D array (z to y dimension) with all the means through x-dimension
                 mean_array = dataStatistics(data,"Mean",Yref,Zref,DeltaX)
@@ -82,14 +83,14 @@ while True:
                         break
                     else: 
                         print("The value for the y-coordinate must be lower than the size of the array's second's dimension")
-                # mean of input coordinates 
+                # Mean of input coordinates 
                 # -1 because index starts with 0 whereas input coordinate is always one more. e.g. Input : 10 is index 9. 
                 mean = mean_array[z_coordinate-1, y_coordinate-1]
                 print('Mean = {:.2f}'.format(mean,"\n"))
                 print('')
                 continue
                
-            # returns variance of user determined y and z coordinate. Input number has to be integer, otherwise error message is displayed 
+            # Returns variance of user determined y and z coordinate. Input number has to be integer, otherwise error message is displayed 
             elif choice_statistics == 2: 
                 # 2D array (z to y dimension) with all variances through x-dimesnion
                 variance_array = dataStatistics(data, "Variance",Yref,Zref,DeltaX)
@@ -124,7 +125,7 @@ while True:
             continue
 
         # Menu for choosing which statistic to plot.
-        plot_menuitems = np.array(["Mean", "Variance","Cross correlation","Quit"])
+        plot_menuitems = np.array(["Mean", "Variance","Cross correlation","Quit plots"])
 
         choice_plot = displayMenu(plot_menuitems)
 
@@ -137,7 +138,9 @@ while True:
             data_variance = dataStatistics(data,"Variance")
             dataPlot(data_variance,"Variance")
         
-        elif choice_plot == 3: 
+        elif choice_plot == 3:
+            # First the user has to input the reference y- and z-coordinate and moreover the DeltaX (the lags).
+            # Then the plot is created 
             Yref = int(inputNumber_int('Please input the reference y_coordinate (Yref) for the cross correlation:'))
             Zref = int(inputNumber_int('Please input the reference z_coordinate (Zref) for the cross correlation:'))
             DeltaX = int(inputNumber_int('Please input the separation in x-coordinate (lags) for which the cross-correlation shall be evaluated for:'))
