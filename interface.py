@@ -10,7 +10,7 @@ from loaddata import dataLoad
 from input_number import inputNumber
 from input_number_integers import inputNumber_int
 from displayMenu import displayMenu
-from statistics_2 import dataStatistics
+from statistics import dataStatistics
 from dataPlot import dataPlot
 from inputFilename import inputFilename
 
@@ -71,7 +71,7 @@ while True:
                 # more elegant would be: write function which asks for z and y coordinate and is called for all 3 statistics
                 # if proven to work, can be copied to Variance and Correlation option 
                 while(True):
-                    z_coordinate = inputNumber_int('Please input the z_coordinate (0-index) you want to display the mean for\n(Remember Nz is the first dimension, Ny the second and Nx the third): ') 
+                    z_coordinate = inputNumber_int('Please input the z_coordinate (0-index,integer) you want to display the mean for\n(Remember Nz is the first dimension, Ny the second and Nx the third): ') 
                     # exits while loop and continues if input coordinate is valid because it is lower than the z dimension of the input data
                     if 0 <= z_coordinate < dimension_z:
                         break
@@ -80,7 +80,7 @@ while True:
                         print("The value for the z-coordinate must be positive and lower than the size of the array's first dimension")
                # same as for z for the y-coordinate. 
                 while True:
-                    y_coordinate = inputNumber_int('Please input the y_coordinate (0-index) you want to display the mean for: ')
+                    y_coordinate = inputNumber_int('Please input the y_coordinate (0-index, integer) you want to display the mean for: ')
                     if 0 <= y_coordinate < dimension_y:
                         break
                     else: 
@@ -100,7 +100,7 @@ while True:
 
                 # Copy lines from mean calculation to ask for y and z coordinates 
                 while(True):
-                    z_coordinate = inputNumber_int('Please input the z_coordinate (0-index) you want to display the variance for\n(Remember Nz is the first dimension, Ny the second and Nx the third): ') 
+                    z_coordinate = inputNumber_int('Please input the z_coordinate (0-index, integer) you want to display the variance for\n(Remember Nz is the first dimension, Ny the second and Nx the third): ') 
                     # exits while loop and continues if input coordinate is valid because it is lower than the z dimension of the input data
                     if 0 <= z_coordinate < dimension_z:
                         break
@@ -125,7 +125,7 @@ while True:
                 # Cross correlation, choose Zref, Yref and DeltaX 
 
                 while(True):
-                    Zref = inputNumber_int('Please input the reference z-coordinate (Zref (0-index)) for the cross correlation\n(Remember Nz is the first dimension, Ny the second and Nx the third): ') 
+                    Zref = inputNumber_int('Please input the reference z-coordinate (Zref (0-index, integer)) for the cross correlation\n(Remember Nz is the first dimension, Ny the second and Nx the third): ') 
                     # Exits while loop and continues if input coordinate is valid because it is lower than the z dimension of the input data
                     if 0 <= Zref < dimension_z:
                         break
@@ -134,13 +134,13 @@ while True:
                         print("The value for the z-coordinate must be positive and lower than the size of the array's first dimension")
                # Same as for z for the y-coordinate. 
                 while True:
-                    Yref = inputNumber_int('Please input the reference y-coordinate (Yref (0-index)) for the cross correlation: ')
+                    Yref = inputNumber_int('Please input the reference y-coordinate (Yref (0-index, integer)) for the cross correlation: ')
                     if 0 <= Yref < dimension_y:
                         break
                     else: 
                         print("The value for the y-coordinate must be positive and lower than the size of the array's second dimension") 
                 while True: 
-                    DeltaX = inputNumber_int('Please input the separation in x (lags) the cross correlation shall be evaluated for\n(Remember Nz is the first dimension, Ny the second and Nx the third): ')
+                    DeltaX = inputNumber_int('Please input the separation in x (lags, integer) the cross correlation shall be evaluated for\n(Remember Nz is the first dimension, Ny the second and Nx the third): ')
                     # Has to be DeltaX <= dimension_x - 1 or DeltaX < than dimension_x when taking the lags. 
                     if 0 < DeltaX < dimension_x:
                         break

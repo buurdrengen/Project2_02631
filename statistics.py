@@ -2,7 +2,6 @@
 """
 Spyder Editor
 # Authour: C. Glitz
-This is a temporary script file.
 """
 
 import numpy as np
@@ -10,14 +9,16 @@ from loaddata import dataLoad
 
 def dataStatistics(data,statistic,Yref=None,Zref=None,DeltaX=None):
     # Input for function:
-    # data: An Nz x Ny x Nx array containing wind speed values.
-    # statistic: A string specifying the statistic that should be calculated (Mean, Variance, or Cross correlation.)
+    # Data: An 3-dimensional Nz x Ny x Nx array containing wind speed values.
+    # Statistic: A string specifying the statistic that should be calculated (Mean, Variance, or Cross correlation.)
+
     # Yref, Zref: The reference y- and z-coordinate for the cross-correlation. 
     # Only needed when statistic is Cross correlation. Denoted yref and zref below.
     # DeltaX: Separation in x-coordinate for which the cross-correlation has to be evaluated. 
+
     # Only needed when statistic is Cross correlation. Denoted deltax below.
 
-    # result: A two-dimensional array with size (Ny x Nz) containing the calculated statistic for each point in the y-z plane.
+    # Output: A two-dimensional array with size (Ny x Nz) containing the calculated statistic for each point in the y-z plane.
 
 
     if statistic == "Mean":
@@ -38,7 +39,7 @@ def dataStatistics(data,statistic,Yref=None,Zref=None,DeltaX=None):
         Nx = np.size(data,axis=2) 
         
         # Constructing the array inside the sum and making it from 0 to Nx instead from 1 to use np.sum
-        # DeltaX is substracted aswell, to make the sum from 0 to Nx instead:  
+        # without initial-values (our experience is it messes things up). 
         c_init = data[:,:,0:Nx-DeltaX-1] * data[Zref,Yref,DeltaX:(Nx-1)]
 
         # Taking the sum from 0 to Nx on the x-axis: 
