@@ -30,9 +30,9 @@ while True:
         # function file input 
         filename = inputFilename()
         # asks one after the other for the size of the three dimensions
-        dimension_x = int(input('Please input the size of the first dimension (x-coordinate) of the 3-dimensional output array: '))
-        dimension_y = int(input('Please input the size of the second dimension (y-coordinate) of the 3-dimensional output array: '))
-        dimension_z = int(input('Please input the size of the third dimension (z-coordinate) of the 3-dimensional output array: '))
+        dimension_x = int(inputNumber('Please input the size of the first dimension (x-coordinate) of the 3-dimensional output array: '))
+        dimension_y = int(inputNumber('Please input the size of the second dimension (y-coordinate) of the 3-dimensional output array: '))
+        dimension_z = int(inputNumber('Please input the size of the third dimension (z-coordinate) of the 3-dimensional output array: '))
         # loads data. If dimensions do not fit to the dataset, an error message occurs saying so. 
         data = dataLoad(filename, dimension_x, dimension_y, dimension_z)
 
@@ -88,7 +88,7 @@ while True:
                 # Mean of input coordinates 
                 # Remember 0-index. 
                 mean = mean_array[z_coordinate, y_coordinate]
-                print('Mean = {:.2f}'.format(mean,"\n"))
+                print('Mean = {:.4f}'.format(mean,"\n"))
                 print('')
                 continue
                
@@ -117,7 +117,7 @@ while True:
 
                 # Variance for input-coordinates 
                 variance = variance_array[z_coordinate, y_coordinate]
-                print('Variance = {:.2f}'.format(variance,"\n"))
+                print('Variance = {:.4f}'.format(variance,"\n"))
                 print("")
                 continue
             
